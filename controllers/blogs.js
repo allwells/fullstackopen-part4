@@ -14,3 +14,5 @@ blogRouter.post("/api/blogs", (request, response) => {
     response.status(201).json(result);
   });
 });
+
+module.exports = blogRouter;
