@@ -7,10 +7,6 @@ blogRouter.get("/", (request, response) => {
   });
 });
 
-blogRouter.delete("/:id", (request, response) => {
-  Blog.fin;
-});
-
 blogRouter.post("/", (request, response) => {
   const blog = new Blog(request.body);
 
