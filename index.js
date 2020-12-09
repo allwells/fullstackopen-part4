@@ -14,21 +14,6 @@ const blogSchema = new mongoose.Schema({
 
 const Blog = mongoose.model("Blog", blogSchema);
 
-const mongoUrl = "mongodb://localhost/bloglist";
-mongoose
-  .connect(mongoUrl, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-    useCreateIndex: true,
-  })
-  .then(() => {
-    logger.info("Connected  to MongoDB");
-  })
-  .catch((error) => {
-    logger.error("Error connecting to MongoDB:", error.message);
-  });
-
 app.use(cors());
 app.use(express.json());
 
