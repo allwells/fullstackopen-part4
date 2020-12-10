@@ -19,6 +19,16 @@ blogRouter.delete("/:id", (request, response, next) => {
     .catch((error) => next(error));
 });
 
+blogRouter.put("/:id", (request, response, next) => {
+  const id = request.params.id;
+
+  Blog.findByIdAndUpdate(id)
+    .then((blogs) => {
+      response.json(blogs);
+    })
+    .catch((error) => next(error));
+});
+
 blogRouter.post("/", (request, response, next) => {
   const blog = new Blog(request.body);
 
