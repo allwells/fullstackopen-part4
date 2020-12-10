@@ -9,6 +9,20 @@ blogRouter.get("/", (request, response, next) => {
     .catch((error) => next(error));
 });
 
+blogRouter.get("/:id", (request, response, next) => {
+  const id = request.params.id;
+
+  Blog.findById(id)
+    .then((blog) => {
+      if (blog) {
+        response.json(blog);
+      } else {
+        response.status(404).end();
+      }
+    })
+    .catch((error) => next(error));
+});
+
 blogRouter.delete("/:id", (request, response, next) => {
   const id = request.params.id;
 
@@ -21,22 +35,44 @@ blogRouter.delete("/:id", (request, response, next) => {
 
 blogRouter.put("/:id", (request, response, next) => {
   const id = request.params.id;
+  const body = request.body;
 
-  Blog.findByIdAndUpdate(id)
+  const blogModel = {
+    title: body.title,
+    author: body.author,
+    url: body.url,
+    likes: body.likes,
+  };
+
+  Blog.findByIdAndUpdate(id, blogModel, { new: true })
     .then((blogs) => {
-      response.json(blogs);
+      response.json(blogs.toJSON());
     })
     .catch((error) => next(error));
 });
 
 blogRouter.post("/", (request, response, next) => {
-  const blog = new Blog(request.body);
+  const body = request.body;
+
+  if (
+    body.title === undefined ||
+    body.url === undefined ||
+    body.author === undefined
+  ) {
+    return response.status(400).json({ error: "Content missing" });
+  }
+
+  const blog = new Blog({
+    title: body.title,
+    author: body.author,
+    url: body.url,
+    likes: body.likes,
+  });
 
   blog
     .save()
-    .then((result) => {
-      response.status(201).json(result);
-    })
+    .then((saved) => saved.toJSON())
+    .then((result) => response.status(201).json(result))
     .catch((error) => next(error));
 });
 
