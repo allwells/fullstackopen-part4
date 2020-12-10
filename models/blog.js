@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const blogRouter = require("../controllers/blogs");
 
 const blogSchema = new mongoose.Schema({
   title: String,
