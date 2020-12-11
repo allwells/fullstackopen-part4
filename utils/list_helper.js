@@ -20,8 +20,34 @@ const favoriteBlog = (blogs) => {
   return favorite;
 };
 
+const mostBlogs = (blogs) => {
+  const objects = Object.entries(
+    blogs.reduce((acc, curr) => {
+      acc[curr.author] = (acc[curr.author] || 0) + 1;
+      return acc;
+    }, {})
+  ).map(([author, blogs]) => ({ author, blogs }));
+  return objects.find(
+    (blog) => blog.blogs === Math.max(...objects.map((object) => object.blogs))
+  );
+};
+
+const mostLikes = (blogs) => {
+  const objects = Object.entries(
+    blogs.reduce((acc, curr) => {
+      acc[curr.author] = (acc[curr.author] || 0) + (curr.likes || 0);
+      return acc;
+    }, {})
+  ).map(([author, likes]) => ({ author, likes }));
+  return objects.find(
+    (blog) => blog.likes === Math.max(...objects.map((blog) => blog.likes))
+  );
+};
+
 module.exports = {
   dummy,
   totalLikes,
   favoriteBlog,
+  mostBlogs,
+  mostLikes,
 };

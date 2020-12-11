@@ -99,3 +99,20 @@ describe("Test for favourite blog", () => {
     expect(result).toEqual(expected);
   });
 });
+
+describe("Test for most blogs and most likes", () => {
+  test("Author with most blogs", () => {
+    const result = listHelper.mostBlogs(listWithMultipleBlogs);
+    expect(result).toEqual({
+      author: "Robert C. Martin",
+      blogs: 3,
+    });
+  });
+  test("Author with most likes", () => {
+    const result = listHelper.mostLikes(listWithMultipleBlogs);
+    expect(result).toEqual({
+      author: "Edsger W. Dijkstra",
+      likes: 17,
+    });
+  });
+});
