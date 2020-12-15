@@ -11,6 +11,18 @@ test("Notes are returned as json", async () => {
     .expect("Content-Type", /application\/json/);
 });
 
+test("There are two blogs", async () => {
+  const response = await api.get("/api/blogs");
+
+  expect(response.body).toHaveLength(2);
+});
+
+test("The first blog is about HTTP methods", async () => {
+  const response = await api.get("/api/blogs");
+
+  expect(response.body[0].content).toBe("HTML is easy");
+});
+
 afterAll(() => {
   mongoose.connection.close();
 });
