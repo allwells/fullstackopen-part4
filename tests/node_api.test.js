@@ -57,7 +57,7 @@ beforeEach(async () => {
   await BlogObject.save();
 });
 
-test("Blog without content is not added", async () => {
+test("A valid blog can be added", async () => {
   const NewBlog = {
     title: "async/await",
     author: "allwells",
@@ -77,6 +77,19 @@ test("Blog without content is not added", async () => {
 
   expect(response.body).toHaveLength(InitialBlogs.length + 1);
   expect(contents).toContain("async/await");
+});
+
+test("Blog without title is not added", async () => {
+  const NewBlog = {
+    author: "allwells",
+    url: "https://fullstackopen.com/en/part4/testing_the_backend#async-await",
+    likes: "400",
+  };
+
+  await api.post("/api/blogs").send(NewBlog).expect(400);
+
+  const response = await api.get("/api/blogs");
+  expect(response.body).toHaveLength(InitialBlogs.length);
 });
 
 test("Blogs are returned as json", async () => {
