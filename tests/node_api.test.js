@@ -20,27 +20,6 @@ const InitialBlogs = [
     likes: 425,
     id: "5fd24e46f25b98293b3a806f",
   },
-  {
-    title: "Gihub Latest",
-    author: "emediong",
-    url: "https://github.com/emedion",
-    likes: 113,
-    id: "5fd294a77bd47c33f7e728f8",
-  },
-  {
-    title: "Fullstack Open",
-    author: "helsinki",
-    url: "https://fullstackopen.com/en",
-    likes: 22414,
-    id: "5fd294e67bd47c33f7e728f9",
-  },
-  {
-    title: "The Blog List",
-    author: "Daily Bugle",
-    url: "https://newyorktimes.com/",
-    likes: 623233,
-    id: "5fd2a1251f397c3b78d590cb",
-  },
 ];
 
 beforeEach(async () => {
@@ -48,12 +27,6 @@ beforeEach(async () => {
   let BlogObject = new Blog(InitialBlogs[0]);
   await BlogObject.save();
   BlogObject = new Blog(InitialBlogs[1]);
-  await BlogObject.save();
-  BlogObject = new Blog(InitialBlogs[2]);
-  await BlogObject.save();
-  BlogObject = new Blog(InitialBlogs[3]);
-  await BlogObject.save();
-  BlogObject = new Blog(InitialBlogs[4]);
   await BlogObject.save();
 });
 
