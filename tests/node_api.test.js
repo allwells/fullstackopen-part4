@@ -12,7 +12,6 @@ const InitialBlogs = [
     likes: 167,
     id: "5fd24de5f25b98293b3a806e",
   },
-
   {
     title: "Github Main",
     author: "tekipeps",
@@ -41,10 +40,10 @@ test("A valid blog can be added", async () => {
   await api
     .post("/api/blogs")
     .send(NewBlog)
-    .expect(200)
+    .expect(201)
     .expect("Content-Type", /application\/json/);
 
-  const response = await api.get("/api/blog");
+  const response = await api.get("/api/blogs");
 
   const contents = response.body.map((res) => res.title);
 
