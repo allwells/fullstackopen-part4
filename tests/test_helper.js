@@ -1,6 +1,6 @@
 const Blog = require("../controllers/blogs");
 
-const InitialBlog = [
+const InitialBlogs = [
   {
     title: "Github",
     author: "allwells",
@@ -16,7 +16,7 @@ const InitialBlog = [
     id: "5fd24e46f25b98293b3a806f",
   },
   {
-    title: "Gihub Latest",
+    title: "Github Latest",
     author: "emediong",
     url: "https://github.com/emedion",
     likes: 113,
@@ -37,3 +37,27 @@ const InitialBlog = [
     id: "5fd2a1251f397c3b78d590cb",
   },
 ];
+
+const NonExistingId = async () => {
+  const blog = new Blog({
+    title: "willremovethissoon",
+    author: "allie",
+    url: "https://github.com/allwells",
+    likes: "213",
+  });
+  await blog.save();
+  await blog.remove();
+
+  return blog._id.toString();
+};
+
+const BlogsInDatabase = async () => {
+  const blogs = await Blog.find();
+  return blogs.map((blog) => blog.toJSON());
+};
+
+module.exports = {
+  InitialBlogs,
+  NonExistingId,
+  BlogsInDatabase,
+};
