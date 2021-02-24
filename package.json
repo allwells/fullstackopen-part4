@@ -6,7 +6,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production node index.js",
     "dev": "cross-env NODE_ENV=development nodemon index.js",
-    "build:ui": "rm -rf ./build && cd ../bloglist-frontend && npm run build --prod && cp -r ./build ../bloglist-backend",
+    "build:ui": "rm -rf ./build && cd ../bloglist-frontend && npm run build --prod && cp -r ./build ../fullstackopen-part4",
     "deploy": "git push heroku master",
     "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && npm run deploy",
     "logs:prod": "heroku logs --tail",
@@ -19,9 +19,11 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "heroku": "^7.48.0",
     "mongoose": "^5.10.17",
     "mongoose-unique-validator": "^2.0.3",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "styled-components": "^5.2.1"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",

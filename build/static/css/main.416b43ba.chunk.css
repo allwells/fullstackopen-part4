@@ -1,0 +1,2 @@
+*,html{box-sizing:border-box;padding:0;margin:0}body{font-family:monospace}#root{justify-content:center;align-self:center;margin:3em 5em;box-shadow:0 0 25px #ddd}#root,.mainLayout{display:flex;flex-direction:column;place-items:center;border-radius:5px}.mainLayout{width:60%;height:-webkit-fit-content;height:-moz-fit-content;height:fit-content;padding:2em 0}.mainHeading{margin:0 0 1em;color:maroon}@media (max-width:540px){.mainLayout{width:80%}#root{margin:1em 2em}}
+/*# sourceMappingURL=main.416b43ba.chunk.css.map */
